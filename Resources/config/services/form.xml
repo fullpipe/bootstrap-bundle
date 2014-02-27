@@ -5,6 +5,7 @@
 
     <parameters>
         <parameter key="braincrafted_bootstrap.form.type.collection.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapCollectionType</parameter>
+        <parameter key="braincrafted_bootstrap.form.type.sortable_collection.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\BootstrapSortableCollectionType</parameter>
         <parameter key="braincrafted_bootstrap.form.type.money.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\MoneyType</parameter>
         <parameter key="braincrafted_bootstrap.form.type.form_actions.class">Braincrafted\Bundle\BootstrapBundle\Form\Type\FormActionsType</parameter>
         <parameter key="braincrafted_bootstrap.form.extension.typesetter_extension.class">Braincrafted\Bundle\BootstrapBundle\Form\Extension\TypeSetterExtension</parameter>
@@ -14,6 +15,10 @@
 
         <service id="braincrafted_bootstrap.form.type.collection" class="%braincrafted_bootstrap.form.type.collection.class%">
             <tag name="form.type" alias="bootstrap_collection" />
+        </service>
+
+        <service id="braincrafted_bootstrap.form.type.sortable_collection" class="%braincrafted_bootstrap.form.type.sortable_collection.class%">
+            <tag name="form.type" alias="bootstrap_sortable_collection" />
         </service>
 
         <service id="braincrafted_bootstrap.form.type.money" class="%braincrafted_bootstrap.form.type.money.class%">

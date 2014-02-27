@@ -120,4 +120,54 @@
     $(document).on('click.addfield.data-api', addField, CollectionAdd.prototype.addField);
     $(document).on('click.removefield.data-api', removeField, CollectionRemove.prototype.removeField);
 
+
+    /* COLLECTION SORTING */
+    /* ================== */
+
+    $('.bc-sortable-collection').bcSortableCollection();
  }(window.jQuery);
+
++(function ( $, window, document, undefined ) {
+    var pluginName = 'bcSortableCollection',
+
+    function Plugin( element, options ) {
+        this.element = element;
+
+        this.options = $.extend( {}, defaults, options) ;
+
+        this._defaults = defaults;
+        this._name = pluginName;
+
+        this.init();
+    }
+
+    Plugin.prototype.init = function () {
+        var $elem = $(this.element);
+
+        $elem.on('click', '.bc-sortable-up, .bc-sortable-down', function(event) {
+            event.preventDefault();
+
+            var
+                $a = $(this),
+                $li = $a.parentsUntil($elem).last()
+                ;
+
+            if ($a.is('.bc-sortable-up')) {
+                $li.insertBefore($li.prev());
+            } else if ($a.is('.bc-sortable-down')) {
+                $li.insertAfter($li.next());
+            }
+
+            return false;
+        })
+    };
+
+    $.fn[pluginName] = function ( options ) {
+        return this.each(function () {
+            if (!$.data(this, 'plugin_' + pluginName)) {
+                $.data(this, 'plugin_' + pluginName,
+                new Plugin( this, options ));
+            }
+        });
+    }
+})( jQuery, window, document );

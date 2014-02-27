@@ -124,18 +124,20 @@
     /* COLLECTION SORTING */
     /* ================== */
 
-    $('.bc-sortable-collection').bcSortableCollection();
+    $(document).ready(function() {
+        $('.bc-sortable-collection').bcSortableCollection();
+    });
+
  }(window.jQuery);
 
 +(function ( $, window, document, undefined ) {
-    var pluginName = 'bcSortableCollection',
+    var pluginName = 'bcSortableCollection';
 
     function Plugin( element, options ) {
         this.element = element;
 
-        this.options = $.extend( {}, defaults, options) ;
+        this.options = $.extend( {}, options) ;
 
-        this._defaults = defaults;
         this._name = pluginName;
 
         this.init();

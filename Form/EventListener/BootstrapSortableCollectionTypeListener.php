@@ -52,6 +52,10 @@ class BootstrapSortableCollectionTypeListener implements EventSubscriberInterfac
             if (isset($data[$imageIndex])) {
                 $entity = $data[$imageIndex];
 
+                if (empty($entity)) {
+                    continue;
+                }
+
                 if (is_string($setter)) {
                     if (is_callable(array($entity, $setter))) {
                         call_user_func(array($entity, $setter), $position);

@@ -144,14 +144,17 @@
     }
 
     Plugin.prototype.init = function () {
-        var $elem = $(this.element);
+        var
+              $elem = $(this.element)
+            , self = this
+            ;
 
         $elem.on('click', '.bc-sortable-up, .bc-sortable-down', function(event) {
             event.preventDefault();
 
             var
-                $a = $(this),
-                $li = $a.parentsUntil($elem).last()
+                  $a = $(this)
+                , $li = $a.parentsUntil($elem).last()
                 ;
 
             if ($a.is('.bc-sortable-up')) {
@@ -160,8 +163,26 @@
                 $li.insertAfter($li.next());
             }
 
+            self.remark();
+
             return false;
         })
+    };
+
+    Plugin.prototype.remark = function() {
+        var
+              $elem = $(this.element)
+            , self = this
+            ;
+
+        $(this.element).find('.bc-sortable-controls .bc-sortable-element-position b').each(function() {
+            var
+                  $b = $(this)
+                , $li = $b.closest('li')
+                ;
+
+            $b.text($li.index() + 1);
+        });
     };
 
     $.fn[pluginName] = function ( options ) {
